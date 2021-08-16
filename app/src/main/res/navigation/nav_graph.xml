@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/signUpFragment">
+
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.mutinda.csprojecti.Authentication.SignUpFragment"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up" >
+        <action
+            android:id="@+id/action_signUpFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_signUpFragment_to_listingsFragment"
+            app:destination="@id/listingsFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.mutinda.csprojecti.Authentication.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_listingsFragment"
+            app:destination="@id/listingsFragment"
+            app:launchSingleTop="false"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_loginFragment_to_passwordResetFragment"
+            app:destination="@id/passwordResetFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/listingsFragment"
+        android:name="com.mutinda.csprojecti.ListingsFragment"
+        android:label="fragment_listings"
+        tools:layout="@layout/fragment_listings" />
+
+    <fragment
+        android:id="@+id/passwordResetThroughPhoneFragment"
+        android:name="com.mutinda.csprojecti.Authentication.PasswordReset.PasswordResetThroughPhoneFragment"
+        android:label="fragment_password_reset_through_phone"
+        tools:layout="@layout/fragment_password_reset_through_phone" />
+    <fragment
+        android:id="@+id/passwordResetThroughEmailFragment"
+        android:name="com.mutinda.csprojecti.Authentication.PasswordReset.PasswordResetThroughEmailFragment"
+        android:label="fragment_password_reset_through_email"
+        tools:layout="@layout/fragment_password_reset_through_email" />
+
+    <fragment
+        android:id="@+id/passwordResetFragment"
+        android:name="com.mutinda.csprojecti.Authentication.PasswordReset.PasswordResetFragment"
+        android:label="fragment_password_reset"
+        tools:layout="@layout/fragment_password_reset" >
+        <action
+            android:id="@+id/action_passwordResetFragment_to_passwordResetThroughPhoneFragment"
+            app:destination="@id/passwordResetThroughPhoneFragment" />
+        <action
+            android:id="@+id/action_passwordResetFragment_to_passwordResetThroughEmailFragment"
+            app:destination="@id/passwordResetThroughEmailFragment" />
+    </fragment>
+
+</navigation>

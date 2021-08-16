@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "783890662416",
+    "project_id": "cs-project-i",
+    "storage_bucket": "cs-project-i.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:783890662416:android:02f562c2ab0063e172f695",
+        "android_client_info": {
+          "package_name": "com.mutinda.csprojecti"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "783890662416-fbskqi4nt4pofs90q9d468g9k7ujtuag.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLpQA7agY2lVlim-0ddFWw9OebE0i4DSs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "783890662416-fbskqi4nt4pofs90q9d468g9k7ujtuag.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

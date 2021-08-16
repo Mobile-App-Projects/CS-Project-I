@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">Jenga Prototype</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="continue_txt">Continue</string>
+    <string name="already_have_an_account_login">Already have an account? Login</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="new_user_sign_up">New user? Sign up</string>
+    <string name="email_address">Email Address</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="accept_terms_and_conditions">Accept Terms and Conditions</string>
+    <string name="back">Back</string>
+    <string name="missing_credentials">Missing Credentials</string>
+    <string name="password_does_not_match">Password does not match</string>
+    <string name="log_in">Log In</string>
+    <string name="password_is_less_than_6_characters">Password is less than 6 characters</string>
+    <string name="kindly_accept_terms_and_conditions">Kindly Accept Terms and Conditions</string>
+    <string name="account_profile">Account Profile</string>
+    <string name="settings">Settings</string>
+    <string name="feedback">Feedback</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="send_password_reset_link">Send Password Reset Link</string>
+    <string name="password_reset_link_sent_to_email">Password Reset Link Sent to Email</string>
+    <string name="password_reset_link_failure">Error. Failed to send link</string>
+    <string name="listing_1">Listing 1</string>
+    <string name="profile">Profile</string>
+    <string name="logout">Logout</string>
+    <string name="user_profile_picture">User Profile Picture</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="listing_location">Listing Location</string>
+    <string name="jenga">Jenga</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="send_email_reset_link">Send Email Reset Link</string>
+    <string name="send_password_reset_code">Send Password Reset Code</string>
+    <string name="reset_password_through">Reset Password through:</string>
+</resources>
