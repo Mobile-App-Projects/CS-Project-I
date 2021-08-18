@@ -50,6 +50,7 @@ public class AccountProfileFragment extends Fragment {
                 accountAuth.signOut();
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);
+                getActivity().finish();
 
             }
         });
