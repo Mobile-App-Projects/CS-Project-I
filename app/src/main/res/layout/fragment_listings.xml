@@ -4,18 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ListingsFragment">
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:logo="@drawable/ic_hamburger_orange"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+    tools:context=".NavigationBar.ListingsFragment">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

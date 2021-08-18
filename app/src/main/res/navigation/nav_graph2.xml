@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph2"
+    app:startDestination="@id/listingsFragment3">
+
+    <fragment
+        android:id="@+id/listingsFragment3"
+        android:name="com.mutinda.csprojecti.NavigationBar.ListingsFragment"
+        android:label="fragment_listings"
+        tools:layout="@layout/fragment_listings" >
+        <action
+            android:id="@+id/action_listingsFragment3_to_accountProfileFragment"
+            app:destination="@id/accountProfileFragment" />
+        <action
+            android:id="@+id/action_listingsFragment3_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_listingsFragment3_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/accountProfileFragment"
+        android:name="com.mutinda.csprojecti.NavigationBar.AccountProfileFragment"
+        android:label="fragment_account_profile"
+        tools:layout="@layout/fragment_account_profile"/>
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.mutinda.csprojecti.NavigationBar.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.mutinda.csprojecti.NavigationBar.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+
+</navigation>

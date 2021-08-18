@@ -1,5 +1,6 @@
 package com.mutinda.csprojecti.Authentication;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -7,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
-import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 
 import android.util.Log;
@@ -26,11 +26,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
-import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.mutinda.csprojecti.ContentActivity;
 import com.mutinda.csprojecti.R;
 
-import java.util.Objects;
 
 public class LoginFragment extends Fragment {
     TextView textToSignUp, forgotPassword;
@@ -87,8 +86,9 @@ public class LoginFragment extends Fragment {
                         public void onSuccess(AuthResult authResult) {
                             Log.d("TAG", "Successful Login");
                             notifyUser("Successful Login");
-                            navController.navigate(R.id.action_loginFragment_to_listingsFragment);
-                            NavOptions navOptions = new NavOptions.Builder().setPopUpTo(R.id.listingsFragment, true).build();
+                            Intent intent = new Intent(getActivity(), ContentActivity.class);
+                            startActivity(intent);
+
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override

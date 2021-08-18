@@ -1,5 +1,6 @@
 package com.mutinda.csprojecti.Authentication;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -25,6 +26,7 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.mutinda.csprojecti.ContentActivity;
 import com.mutinda.csprojecti.R;
 
 import java.util.HashMap;
@@ -95,7 +97,8 @@ public class SignUpFragment extends Fragment {
                 {
                     notifyUser(getString(R.string.kindly_accept_terms_and_conditions));
                 }else{
-                    navController.navigate(R.id.action_signUpFragment_to_listingsFragment);
+                    Intent intent = new Intent(getActivity(), ContentActivity.class);
+                    startActivity(intent);
 
                     Map<String, Object> user = new HashMap<>();
                     user.put("First Name", userFirstName);
@@ -103,9 +106,7 @@ public class SignUpFragment extends Fragment {
                     user.put("Phone No", userPhone);
                     user.put("Email", userEmail);
                     user.put("Password", userPassword);
-                    if(fStore.collection("Users").document(userEmail).equals(userEmail)){
-                        notifyUser("Account is already in use");
-                    }else{
+
                         fStore.collection("Users").add(user).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                             @Override
                             public void onSuccess(DocumentReference documentReference) {
@@ -139,7 +140,6 @@ public class SignUpFragment extends Fragment {
                         });
                     }
                 }
-            }
         });
 
         textToLogin.setOnClickListener(new View.OnClickListener() {

@@ -1,21 +1,28 @@
-package com.mutinda.csprojecti;
+package com.mutinda.csprojecti.NavigationBar;
 
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.ActionBarContainer;
 import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.legacy.app.ActionBarDrawerToggle;
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class ListingsFragment extends Fragment {
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
+import com.mutinda.csprojecti.R;
 
-    Toolbar toolbar;
+public class ListingsFragment extends Fragment implements NavigationView.OnNavigationItemSelectedListener {
+    BottomNavigationView bottomNavigationView;
     public ListingsFragment() {
         // Required empty public constructor
     }
@@ -32,8 +39,14 @@ public class ListingsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         setHasOptionsMenu(true);
 
-        toolbar = view.findViewById(R.id.toolbar);
+        bottomNavigationView = view.findViewById(R.id.bottom_nav);
 
 
+
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        return false;
     }
 }

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <item
+            android:id="@+id/listings_item"
+            android:title="@string/listings"
+            android:icon="@drawable/list_view_icon"
+            />
+        <item
+            android:id="@+id/map_item"
+            android:title="@string/map"
+            android:icon="@drawable/location_pin_icon"
+            />
+
+        <item
+            android:id="@+id/account_item"
+            android:title="@string/account"
+            android:icon="@drawable/account_box_icon"
+            />
+
+        <item
+            android:id="@+id/settings_item"
+            android:title="@string/settings"
+            android:icon="@drawable/settings_icon"
+            />
+
+
+</menu>
