@@ -25,7 +25,6 @@ public class AccountProfileFragment extends Fragment {
     User accountUser;
     Button editUserProfile, logout;
     FirebaseAuth accountAuth;
-    NavController navController;
     public AccountProfileFragment() {
         // Required empty public constructor
     }
@@ -44,7 +43,6 @@ public class AccountProfileFragment extends Fragment {
         editUserProfile = view.findViewById(R.id.edit_user_profile_btn);
         logout = view.findViewById(R.id.logout_btn);
         accountAuth = FirebaseAuth.getInstance();
-        navController = Navigation.findNavController(view);
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
