@@ -19,8 +19,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
@@ -41,6 +44,8 @@ public class SignUpFragment extends Fragment {
     NavController navController;
     FirebaseAuth mAuth;
     FirebaseFirestore fStore;
+    DocumentReference dRef;
+    String userID;
 
     public SignUpFragment() {
         // Required empty public constructor
@@ -71,6 +76,7 @@ public class SignUpFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
 
+
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,46 +106,53 @@ public class SignUpFragment extends Fragment {
                     Intent intent = new Intent(getActivity(), ContentActivity.class);
                     startActivity(intent);
 
-                    Map<String, Object> user = new HashMap<>();
-                    user.put("First Name", userFirstName);
-                    user.put("Last Name", userLastName);
-                    user.put("Phone No", userPhone);
-                    user.put("Email", userEmail);
-                    user.put("Password", userPassword);
+                    mAuth.createUserWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()){
+                                userID = mAuth.getCurrentUser().getUid();
+                                dRef = fStore.collection("Users").document(userID);
 
-                        fStore.collection("Users").add(user).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                            @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                Log.d("TAG","New User Created" );
-                                notifyUser("Success");
-                                mAuth.createUserWithEmailAndPassword(userEmail,userPassword);
-                                FirebaseUser fUser = mAuth.getCurrentUser();
-                                fUser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                Map<String, Object> user = new HashMap<>();
+                                user.put("First Name", userFirstName);
+                                user.put("Last Name", userLastName);
+                                user.put("Phone No", userPhone);
+                                user.put("Email", userEmail);
+                                user.put("Password", userPassword);
+
+                                dRef.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
-                                        Log.d("EmailVerification","Email verification sent successfully.");
+                                        Log.d("FireSuccess", "User" + userID + " created");
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
-                                        Log.e("EmailVerificationError","Failed to send email verification.");
+                                        if(e instanceof FirebaseAuthUserCollisionException){
+                                            notifyUser("Account already in use.");
+                                        }else{
+                                            Log.e("FireFailure", "Failed to add new user to database");
+                                            notifyUser("Error. Account not created");
+                                        }
+
                                     }
                                 });
                             }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-
-                                if(e instanceof FirebaseAuthUserCollisionException){
-                                    notifyUser("Account already in use.");
-                                }else{
-                                    Log.e("TAG", "Failed to create new user");
-                                    notifyUser("Error. Account not created");
-                                }
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            if(e instanceof FirebaseAuthUserCollisionException){
+                                notifyUser("Account already in use.");
+                            }else{
+                                Log.e("FireFailure", "Failed to create new user");
+                                notifyUser("Failed. Check your internet connection");
                             }
-                        });
-                    }
+
+                        }
+                    });
                 }
+            }
         });
 
         textToLogin.setOnClickListener(new View.OnClickListener() {
