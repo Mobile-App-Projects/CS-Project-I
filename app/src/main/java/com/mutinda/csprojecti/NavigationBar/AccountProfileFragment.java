@@ -6,12 +6,15 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,6 +35,8 @@ public class AccountProfileFragment extends Fragment {
     FirebaseFirestore mStore;
     String userId;
     DocumentReference docRef;
+    ImageView userProfile;
+    private final static int GALLERY_REQ = 1;
     public AccountProfileFragment() {
         // Required empty public constructor
     }
@@ -52,6 +57,7 @@ public class AccountProfileFragment extends Fragment {
         username = view.findViewById(R.id.userName_text);
         phone = view.findViewById(R.id.userPhone_text);
         email = view.findViewById(R.id.userEmail_text);
+        userProfile = view.findViewById(R.id.user_profile_picture);
         accountAuth = FirebaseAuth.getInstance();
         mStore = FirebaseFirestore.getInstance();
         userId = accountAuth.getCurrentUser().getUid();
@@ -65,6 +71,15 @@ public class AccountProfileFragment extends Fragment {
                 email.setText(value.getString("Email"));
             }
         });
+
+        editUserProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               Fragment fragment = new EditProfile();
+               getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView3, fragment, "Edit Profile Fragment").addToBackStack(null).commit();
+            }
+        });
+
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,6 +90,5 @@ public class AccountProfileFragment extends Fragment {
 
             }
         });
-        
     }
 }

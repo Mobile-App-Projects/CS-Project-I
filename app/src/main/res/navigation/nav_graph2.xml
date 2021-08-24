@@ -24,7 +24,11 @@
         android:id="@+id/accountProfileFragment"
         android:name="com.mutinda.csprojecti.NavigationBar.AccountProfileFragment"
         android:label="fragment_account_profile"
-        tools:layout="@layout/fragment_account_profile"/>
+        tools:layout="@layout/fragment_account_profile">
+        <action
+            android:id="@+id/action_accountProfileFragment_to_editProfile"
+            app:destination="@id/editProfile" />
+    </fragment>
     <fragment
         android:id="@+id/mapsFragment"
         android:name="com.mutinda.csprojecti.NavigationBar.MapsFragment"
@@ -35,6 +39,15 @@
         android:name="com.mutinda.csprojecti.NavigationBar.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/editProfile"
+        android:name="com.mutinda.csprojecti.NavigationBar.EditProfile"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile" >
+        <action
+            android:id="@+id/action_editProfile_to_accountProfileFragment"
+            app:destination="@id/accountProfileFragment" />
+    </fragment>
 
 
 </navigation>

@@ -3,10 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/CSProjectI/app/src/main/res/drawable/borders.xml" value="0.240625" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/CSProjectI/app/src/main/res/drawable/ic_right_facing_arrow.xml" value="0.23692307692307693" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/CSProjectI/app/src/main/res/layout/activity_content.xml" value="0.1" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/CSProjectI/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/CSProjectI/app/src/main/res/layout/fragment_account_profile.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/CSProjectI/app/src/main/res/layout/fragment_edit_profile.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/CSProjectI/app/src/main/res/layout/fragment_listings.xml" value="0.22" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/CSProjectI/app/src/main/res/layout/fragment_login.xml" value="0.5" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/CSProjectI/app/src/main/res/layout/fragment_maps.xml" value="0.13" />
