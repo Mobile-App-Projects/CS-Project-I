@@ -1,5 +1,6 @@
 package com.mutinda.csprojecti.NavigationBar;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -19,10 +20,15 @@ import android.view.ViewGroup;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.mutinda.csprojecti.Authentication.LoginFragment;
+import com.mutinda.csprojecti.MainActivity;
 import com.mutinda.csprojecti.R;
 
 public class ListingsFragment extends Fragment implements NavigationView.OnNavigationItemSelectedListener {
     BottomNavigationView bottomNavigationView;
+    private FirebaseAuth mAuth;
     public ListingsFragment() {
         // Required empty public constructor
     }
@@ -40,6 +46,14 @@ public class ListingsFragment extends Fragment implements NavigationView.OnNavig
         setHasOptionsMenu(true);
 
         bottomNavigationView = view.findViewById(R.id.bottom_nav);
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser == null) {
+            Intent loginIntent = new Intent(getActivity(), MainActivity.class);
+            startActivity(loginIntent);
+            getActivity().finish();
+        }
+
 
 
 

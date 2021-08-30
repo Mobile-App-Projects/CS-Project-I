@@ -24,23 +24,27 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.Transaction;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.mutinda.csprojecti.R;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
@@ -120,9 +124,43 @@ public class EditProfile extends Fragment {
                 if(TextUtils.isEmpty(newFirstName) || TextUtils.isEmpty(newLastName) || TextUtils.isEmpty(newPhone)  || TextUtils.isEmpty(newEmail) ) {
                     notifyUser(String.valueOf(R.string.missing_credentials));
                 }else {
-//                    StorageReference profileImagePath = mStorageRef.child("profile_images").child(profileImageUri.getLastPathSegment());
-//                    UploadTask uploadTask = profileImagePath.putFile(profileImageUri);
+                    mStorageRef.child(profileImageUri.getLastPathSegment());
+                    mStorageRef.putFile(profileImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            if(taskSnapshot.getMetadata() != null) {
+                                if(taskSnapshot.getMetadata().getReference() != null) {
+                                    Task<Uri> result = taskSnapshot.getStorage().getDownloadUrl();
+                                    result.addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                        @Override
+                                        public void onSuccess(Uri uri) {
+                                            final String profileImage = uri.toString();
 
+                                           mDatabaseUser.push();
+                                            mDatabaseUser.addValueEventListener(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    mDatabaseUser.child("profilePhoto").setValue(profileImage).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<Void> task) {
+                                                            if(task.isSuccessful()) {
+                                                                Log.d("ProfilePic", "Success");
+                                                            }
+                                                        }
+                                                    });
+                                                }
+
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
+                                        }
+                                    });
+                                }
+                            }
+                        }
+                    });
                     docRef = mStore.collection("Users").document(userId);
 
                     Map<String, Object> user = new HashMap<>();
@@ -136,8 +174,6 @@ public class EditProfile extends Fragment {
                         public void onSuccess(Void unused) {
                             Log.d("FirebaseUpdate","Update Successful");
                             notifyUser("Profile Updated!");
-//                            NavController navController = Navigation.findNavController(view);
-//                            navController.navigate(R.id.action_editProfile_to_accountProfileFragment);
                             Fragment fragment = new AccountProfileFragment();
                             getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView3, fragment, "Edit Profile Fragment").addToBackStack(null).commit();
                         }
@@ -157,4 +193,16 @@ public class EditProfile extends Fragment {
     public void notifyUser(String notify){
         Toast.makeText(getContext(), notify, Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == GALLERY_REQ && resultCode == -1){
+            profileImageUri = data.getData();
+            userProfile.setImageURI(profileImageUri);
+
+        }
+    }
+
 }

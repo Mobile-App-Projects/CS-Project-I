@@ -13,6 +13,8 @@ import android.widget.RelativeLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.mutinda.csprojecti.NavigationBar.AccountProfileFragment;
 import com.mutinda.csprojecti.NavigationBar.ListingsFragment;
 import com.mutinda.csprojecti.NavigationBar.MapsFragment;
@@ -20,6 +22,7 @@ import com.mutinda.csprojecti.NavigationBar.SettingsFragment;
 
 public class ContentActivity extends AppCompatActivity {
     private BottomNavigationView navigationView;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +30,13 @@ public class ContentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_content);
 
         navigationView = findViewById(R.id.bottom_nav);
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser == null) {
+            Intent loginIntent = new Intent(ContentActivity.this, MainActivity.class);
+            startActivity(loginIntent);
+            finish();
+        }
 
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
