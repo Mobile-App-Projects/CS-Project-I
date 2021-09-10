@@ -12,13 +12,12 @@
         android:layout_height="150dp"
         android:layout_marginTop="50dp"
         android:background="#00FFFFFF"
-        android:elevation="1dp"
         android:contentDescription="@string/user_profile_picture"
+        android:elevation="1dp"
         android:src="@drawable/user_profile_105"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <EditText
@@ -28,36 +27,40 @@
         android:layout_marginTop="24dp"
         android:ems="9"
         android:hint="@string/first_name"
-        android:textSize="18sp"
+        android:minHeight="48dp"
         android:textAlignment="center"
-        app:layout_constraintTop_toBottomOf="@id/user_profile_picture"
-        app:layout_constraintStart_toStartOf="parent"/>
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/user_profile_picture" />
 
     <EditText
         android:id="@+id/userName_last"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/last_name"
+        android:layout_marginTop="24dp"
         android:ems="9"
-        android:textSize="18sp"
+        android:hint="@string/last_name"
+        android:minHeight="48dp"
         android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="@id/userName_first"
-        app:layout_constraintTop_toTopOf="@id/userName_first"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userName_first" />
 
     <EditText
         android:id="@+id/userPhone_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:hint="@string/phone_number"
         android:ems="9"
-        android:textSize="18sp"
+        android:hint="@string/phone_number"
+        android:minHeight="48dp"
         android:textAlignment="center"
-
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/userName_first"
-        />
+        app:layout_constraintTop_toBottomOf="@id/userName_last" />
 
 
     <EditText
@@ -65,13 +68,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:hint="@string/email_address"
         android:ems="9"
-        android:textSize="18sp"
+        android:hint="@string/email_address"
+        android:minHeight="48dp"
         android:textAlignment="center"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-
-        app:layout_constraintTop_toBottomOf="@id/userName_last"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/userPhone_text" />
 
     <Button
         android:id="@+id/save_user_profile_btn"
@@ -85,7 +89,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/userEmail_text" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

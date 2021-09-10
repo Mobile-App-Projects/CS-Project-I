@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/CSProjectI/app/src/main/res/drawable/borders.xml" value="0.240625" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/CSProjectI/app/src/main/res/drawable/ic_cogwheel.xml" value="0.240625" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/CSProjectI/app/src/main/res/drawable/ic_cogwheel_orange.xml" value="0.240625" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/CSProjectI/app/src/main/res/drawable/ic_cogwheel_white.xml" value="0.240625" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/CSProjectI/app/src/main/res/drawable/ic_hamburger_orange.xml" value="0.240625" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/CSProjectI/app/src/main/res/drawable/ic_home.xml" value="0.240625" />
@@ -16,7 +17,7 @@
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/CSProjectI/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/CSProjectI/app/src/main/res/layout/fragment_account_profile.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/CSProjectI/app/src/main/res/layout/fragment_blank.xml" value="0.22447916666666667" />
-        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/CSProjectI/app/src/main/res/layout/fragment_edit_profile.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/CSProjectI/app/src/main/res/layout/fragment_edit_profile.xml" value="0.22" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/CSProjectI/app/src/main/res/layout/fragment_listings.xml" value="0.22" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/CSProjectI/app/src/main/res/layout/fragment_login.xml" value="0.22" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/CSProjectI/app/src/main/res/layout/fragment_maps.xml" value="0.13" />
@@ -24,7 +25,7 @@
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/CSProjectI/app/src/main/res/layout/fragment_password_reset_through_email.xml" value="0.25" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/CSProjectI/app/src/main/res/layout/fragment_password_reset_through_phone.xml" value="0.22" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/CSProjectI/app/src/main/res/layout/fragment_post_listing.xml" value="0.12047101449275362" />
-        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/CSProjectI/app/src/main/res/layout/fragment_settings.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/CSProjectI/app/src/main/res/layout/fragment_settings.xml" value="0.1" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/CSProjectI/app/src/main/res/layout/fragment_sign_up.xml" value="0.75" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/CSProjectI/app/src/main/res/layout/nav_header.xml" value="0.10916919959473151" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/CSProjectI/app/src/main/res/menu/menu.xml" value="0.21481481481481482" />

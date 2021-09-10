@@ -26,10 +26,11 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.mutinda.csprojecti.MainActivity;
 import com.mutinda.csprojecti.R;
 import com.mutinda.csprojecti.User;
+import com.squareup.picasso.Picasso;
 
 public class AccountProfileFragment extends Fragment {
     User accountUser;
-    Button editUserProfile, logout;
+    Button editUserProfile, postButton;
     TextView username, phone, email;
     FirebaseAuth accountAuth;
     FirebaseFirestore mStore;
@@ -53,11 +54,11 @@ public class AccountProfileFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         editUserProfile = view.findViewById(R.id.edit_user_profile_btn);
-        logout = view.findViewById(R.id.logout_btn);
         username = view.findViewById(R.id.userName_text);
         phone = view.findViewById(R.id.userPhone_text);
         email = view.findViewById(R.id.userEmail_text);
         userProfile = view.findViewById(R.id.user_profile_picture);
+        postButton = view.findViewById(R.id.postBtn);
         accountAuth = FirebaseAuth.getInstance();
         mStore = FirebaseFirestore.getInstance();
         userId = accountAuth.getCurrentUser().getUid();
@@ -69,6 +70,7 @@ public class AccountProfileFragment extends Fragment {
                 username.setText((new StringBuilder().append(value.getString("First Name")).append(" ").append(value.getString("Last Name")).toString()));
                 phone.setText(value.getString("Phone No"));
                 email.setText(value.getString("Email"));
+                Picasso.with(getContext()).load(value.getString("Profile Image Url")).into(userProfile);
             }
         });
 
@@ -80,15 +82,13 @@ public class AccountProfileFragment extends Fragment {
             }
         });
 
-        logout.setOnClickListener(new View.OnClickListener() {
+        postButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                accountAuth.signOut();
-                Intent intent = new Intent(getActivity(), MainActivity.class);
-                startActivity(intent);
-                getActivity().finish();
-
+                Fragment fragment1 = new PostListingFragment();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView3, fragment1, "Post Listing Fragment").addToBackStack(null).commit();
             }
         });
+
     }
 }

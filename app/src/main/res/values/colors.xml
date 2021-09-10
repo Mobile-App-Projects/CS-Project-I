@@ -11,4 +11,7 @@
     <color name="orange_500">#FF9800</color>
     <color name="orange_700">#F57C00</color>
     <color name="light_grey">#B3B3B3</color>
+    <color name="transparent">#00000000</color>
+    <color name="background_grey">#303030</color>
+    <color name="navbar_grey">#2D2D2D</color>
 </resources>

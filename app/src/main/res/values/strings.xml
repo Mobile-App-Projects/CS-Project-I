@@ -44,4 +44,6 @@
     <string name="listing_title">Listing Title</string>
     <string name="listing_description">Listing Description</string>
     <string name="post">Post</string>
+    <string name="add_listing_image">Add Listing Image</string>
+    <string name="add_listing">Add Listing</string>
 </resources>

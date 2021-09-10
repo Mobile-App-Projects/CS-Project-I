@@ -7,8 +7,10 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -24,10 +26,15 @@ public class ContentActivity extends AppCompatActivity {
     private BottomNavigationView navigationView;
     private FirebaseAuth mAuth;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_content);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            getWindow().setNavigationBarColor(getResources().getColor(R.color.navbar_grey));
+        }
 
         navigationView = findViewById(R.id.bottom_nav);
         mAuth = FirebaseAuth.getInstance();

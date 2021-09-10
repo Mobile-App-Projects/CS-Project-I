@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_accountProfileFragment_to_editProfile"
             app:destination="@id/editProfile" />
+        <action
+            android:id="@+id/action_accountProfileFragment_to_postListingFragment"
+            app:destination="@id/postListingFragment" />
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"
@@ -48,6 +51,11 @@
             android:id="@+id/action_editProfile_to_accountProfileFragment"
             app:destination="@id/accountProfileFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/postListingFragment"
+        android:name="com.mutinda.csprojecti.NavigationBar.PostListingFragment"
+        android:label="fragment_post_listing"
+        tools:layout="@layout/fragment_post_listing"/>
 
 
 </navigation>
