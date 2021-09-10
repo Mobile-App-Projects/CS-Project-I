@@ -1,6 +1,10 @@
 package com.mutinda.csprojecti.Authentication;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -87,7 +91,10 @@ public class SignUpFragment extends Fragment {
                 userPassword = password.getText().toString().trim();
                 userConfirmPassword = confirmPassword.getText().toString().trim();
 
-                if (userFirstName.isEmpty() || userLastName.isEmpty() || userPhone.isEmpty() || userEmail.isEmpty() || userPassword.isEmpty() || userConfirmPassword.isEmpty())
+                if(!isConnected()){
+                    Toast.makeText(getContext(), "Internet Unavailable", Toast.LENGTH_LONG).show();
+                }
+                else if (userFirstName.isEmpty() || userLastName.isEmpty() || userPhone.isEmpty() || userEmail.isEmpty() || userPassword.isEmpty() || userConfirmPassword.isEmpty())
                 {
                     notifyUser(getString(R.string.missing_credentials));
                 }
@@ -166,6 +173,15 @@ public class SignUpFragment extends Fragment {
 
     public void notifyUser(String notify){
         Toast.makeText(getContext(), notify, Toast.LENGTH_SHORT).show();
+    }
+
+    public boolean isConnected(){
+        ConnectivityManager connectivityManager = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo netConn = connectivityManager.getActiveNetworkInfo();
+
+        return (netConn != null && netConn.isConnected());
+
     }
 }
 

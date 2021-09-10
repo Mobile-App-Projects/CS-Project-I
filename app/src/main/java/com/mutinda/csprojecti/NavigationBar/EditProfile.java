@@ -49,6 +49,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.mutinda.csprojecti.R;
+import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -104,6 +105,8 @@ public class EditProfile extends Fragment {
                 userNameLast.setText(value.getString("Last Name"));
                 userPhone.setText(value.getString("Phone No"));
                 userEmail.setText(value.getString("Email"));
+                Picasso.with(getContext()).load(value.getString("Profile Image Url")).into(userProfile);
+
             }
         });
 

@@ -1,7 +1,10 @@
 package com.mutinda.csprojecti.Authentication;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -78,7 +81,11 @@ public class LoginFragment extends Fragment {
             public void onClick(View view) {
                 userEmail = emailAddress.getText().toString().trim();
                 userPassword = password.getText().toString().trim();
-                if (userEmail.isEmpty() || userPassword.isEmpty()) {
+
+                if(!isConnected()){
+                    Toast.makeText(getContext(), "Internet Unavailable", Toast.LENGTH_LONG).show();
+                }
+                else if (userEmail.isEmpty() || userPassword.isEmpty()) {
                     notifyUser(getString(R.string.missing_credentials));
                 } else {
                     mAuth.signInWithEmailAndPassword(userEmail, userPassword).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
@@ -113,5 +120,14 @@ public class LoginFragment extends Fragment {
 
     public void notifyUser(String notify){
         Toast.makeText(getContext(), notify, Toast.LENGTH_SHORT).show();
+    }
+
+    public boolean isConnected(){
+        ConnectivityManager connectivityManager = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo netConn = connectivityManager.getActiveNetworkInfo();
+
+        return (netConn != null && netConn.isConnected());
+
     }
 }
