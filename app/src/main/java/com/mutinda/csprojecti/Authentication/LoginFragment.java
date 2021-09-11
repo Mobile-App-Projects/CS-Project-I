@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +39,7 @@ public class LoginFragment extends Fragment {
     TextView textToSignUp, forgotPassword;
     EditText emailAddress, password;
     Button login;
+    ProgressBar progressBar;
     NavController navController;
     String userEmail, userPassword;
     FirebaseApp firebaseApp;
@@ -62,6 +64,7 @@ public class LoginFragment extends Fragment {
         emailAddress = view.findViewById(R.id.emailAddress);
         password = view.findViewById(R.id.userPassword);
         login = view.findViewById(R.id.login_btn);
+        progressBar = view.findViewById(R.id.loginProgressBar);
         textToSignUp = view.findViewById(R.id.textToSignUp);
         forgotPassword = view.findViewById(R.id.forgotPassword);
         navController = Navigation.findNavController(view);
@@ -81,18 +84,22 @@ public class LoginFragment extends Fragment {
             public void onClick(View view) {
                 userEmail = emailAddress.getText().toString().trim();
                 userPassword = password.getText().toString().trim();
+                progressBar.setVisibility(View.VISIBLE);
 
                 if(!isConnected()){
                     Toast.makeText(getContext(), "Internet Unavailable", Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
                 else if (userEmail.isEmpty() || userPassword.isEmpty()) {
                     notifyUser(getString(R.string.missing_credentials));
+                    progressBar.setVisibility(View.INVISIBLE);
                 } else {
                     mAuth.signInWithEmailAndPassword(userEmail, userPassword).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                         @Override
                         public void onSuccess(AuthResult authResult) {
                             Log.d("TAG", "Successful Login");
                             notifyUser("Successful Login");
+                            progressBar.setVisibility(View.INVISIBLE);
                             Intent intent = new Intent(getActivity(), ContentActivity.class);
                             startActivity(intent);
 

@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,6 +46,7 @@ public class SignUpFragment extends Fragment {
     TextView textToLogin;
     Button signup;
     CheckBox agreement;
+    ProgressBar progressBar;
     NavController navController;
     FirebaseAuth mAuth;
     FirebaseFirestore fStore;
@@ -76,6 +78,7 @@ public class SignUpFragment extends Fragment {
         textToLogin = view.findViewById(R.id.textToLogin);
         agreement = view.findViewById(R.id.terms_and_conditions);
         signup = view.findViewById(R.id.signup_btn);
+        progressBar = view.findViewById(R.id.signUpProgressBar);
         navController = Navigation.findNavController(view);
         mAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
@@ -90,13 +93,16 @@ public class SignUpFragment extends Fragment {
                 userEmail = emailAddress.getText().toString().trim();
                 userPassword = password.getText().toString().trim();
                 userConfirmPassword = confirmPassword.getText().toString().trim();
+                progressBar.setVisibility(View.VISIBLE);
 
                 if(!isConnected()){
                     Toast.makeText(getContext(), "Internet Unavailable", Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
                 else if (userFirstName.isEmpty() || userLastName.isEmpty() || userPhone.isEmpty() || userEmail.isEmpty() || userPassword.isEmpty() || userConfirmPassword.isEmpty())
                 {
                     notifyUser(getString(R.string.missing_credentials));
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
                 else if (userPassword.length() < 6)
                 {
@@ -110,8 +116,6 @@ public class SignUpFragment extends Fragment {
                 {
                     notifyUser(getString(R.string.kindly_accept_terms_and_conditions));
                 }else{
-                    Intent intent = new Intent(getActivity(), ContentActivity.class);
-                    startActivity(intent);
 
                     mAuth.createUserWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -131,6 +135,9 @@ public class SignUpFragment extends Fragment {
                                     @Override
                                     public void onSuccess(Void unused) {
                                         Log.d("FireSuccess", "User" + userID + " created");
+                                        progressBar.setVisibility(View.INVISIBLE);
+                                        Intent intent = new Intent(getActivity(), ContentActivity.class);
+                                        startActivity(intent);
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
